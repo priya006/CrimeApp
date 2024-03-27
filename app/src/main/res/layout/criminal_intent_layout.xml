@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- TextView -->
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Title"
+        android:layout_gravity="center_vertical"
+        android:textStyle="bold" />
+
+    <!-- EditText -->
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/title_hint" />
+
+    <!-- Details Section TextView -->
+    <TextView
+        android:id="@+id/detailsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="@string/Details_Section" />
+
+    <!-- DatePicker Button -->
+    <Button
+        android:id="@+id/datePickerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Monday, February 28, 2024 11:30 AM EST" />
+
+    <!-- Checkbox -->
+    <CheckBox
+        android:id="@+id/checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Solved" />
+
+</LinearLayout>
