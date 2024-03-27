@@ -1,6 +1,7 @@
 package com.example.criminalintent.Fragment
 
 import android.os.Bundle
+import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,9 +41,10 @@ class CrimeDetailFragment : Fragment() {
   private fun updateUI(){
       
       binding.editText.doOnTextChanged { text, _, _, _ ->
-          binding.textView.text = crime.copy(
-              title = text
-          ).toString()
+          //check whether the text entered by the user is different from the current text
+          if(binding.editText.text.toString() != text.toString()){
+              binding.editText.text = text as Editable?
+          }
       }
 
   }
