@@ -1,5 +1,6 @@
 What am i learning everyday?
-
+1. How Fragments placed inside fragment container view and hosted in a activity
+2. 
 
 
 
