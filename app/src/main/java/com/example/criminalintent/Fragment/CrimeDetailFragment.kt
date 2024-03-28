@@ -14,7 +14,7 @@ import java.util.UUID
 
 class CrimeDetailFragment : Fragment() {
 
-    private lateinit var crime: Crime
+   // private lateinit var crime: Crime
     private lateinit var binding: CriminalIntentLayoutBinding
 
     override fun onCreateView(
@@ -29,12 +29,12 @@ class CrimeDetailFragment : Fragment() {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        crime = Crime(
-            crimeID = UUID.randomUUID(),
-            title = "some title",
-            date = Date(),
-            isSolved = true
-        )
+//        crime = Crime(
+//            crimeID = UUID.randomUUID(),
+//            title = "some title",
+//            date = Date(),
+//            isSolved = true
+//        )
         updateUI()
     }
 
