@@ -17,16 +17,17 @@ import java.util.UUID
 class CrimeDetailFragment : Fragment() {
 
     private lateinit var crime: Crime
-    private lateinit var binding: CriminalIntentLayoutBinding
+    private  var _binding: CriminalIntentLayoutBinding? = null
+    private val  binding  get() = _binding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
 
-        binding = CriminalIntentLayoutBinding.inflate(layoutInflater)
-        return binding.root
+        _binding = CriminalIntentLayoutBinding.inflate(layoutInflater)
+        return _binding?.root
     }
 
 
@@ -42,17 +43,17 @@ class CrimeDetailFragment : Fragment() {
 
     private fun updateUI() {
 
-        binding.editText.doOnTextChanged { text, _, _, _ ->
+        _binding?.editText?.doOnTextChanged { text, _, _, _ ->
             //check whether the text entered by the user is different from the current text
-            if (binding.editText.text.toString() != text.toString()) {
-                binding.editText.text = text as Editable?
+            if (_binding?.editText?.text.toString() != text.toString()) {
+                _binding?.editText?.text = text as Editable?
             }
         }
         val date = Date()
-        binding.datePickerButton.text =
+        _binding?.datePickerButton?.text =
             formatDateWithTimeZone(date, "yyyy-MM-dd HH:mm:ss z", "America/Los_Angeles")
 
-        binding.checkbox.setOnCheckedChangeListener { _, isChecked ->
+        _binding?.checkbox?.setOnCheckedChangeListener { _, isChecked ->
             crime.copy(
                 isSolved = isChecked
             )
@@ -71,4 +72,11 @@ class CrimeDetailFragment : Fragment() {
 
     //TODO: initialise the crime object
 //    }
+
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        //nulling out references to the views
+        _binding = null
+    }
 }

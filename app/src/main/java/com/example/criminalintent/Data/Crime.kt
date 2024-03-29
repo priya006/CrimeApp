@@ -1,6 +1,5 @@
 package com.example.criminalintent.Data
 
-import java.util.Date
 import java.util.UUID
 
 data class Crime(
