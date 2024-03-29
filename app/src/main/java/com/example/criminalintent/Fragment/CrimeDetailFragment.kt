@@ -17,6 +17,7 @@ import java.util.UUID
 class CrimeDetailFragment : Fragment() {
 
     private lateinit var crime: Crime
+    //nullable backing property
     private  var _binding: CriminalIntentLayoutBinding? = null
     private val  binding  get() = _binding
 
@@ -27,7 +28,7 @@ class CrimeDetailFragment : Fragment() {
     ): View? {
 
         _binding = CriminalIntentLayoutBinding.inflate(layoutInflater)
-        return _binding?.root
+        return binding?.root
     }
 
 
@@ -43,17 +44,17 @@ class CrimeDetailFragment : Fragment() {
 
     private fun updateUI() {
 
-        _binding?.editText?.doOnTextChanged { text, _, _, _ ->
+        binding?.editText?.doOnTextChanged { text, _, _, _ ->
             //check whether the text entered by the user is different from the current text
-            if (_binding?.editText?.text.toString() != text.toString()) {
-                _binding?.editText?.text = text as Editable?
+            if (binding?.editText?.text.toString() != text.toString()) {
+                binding?.editText?.text = text as Editable?
             }
         }
         val date = Date()
-        _binding?.datePickerButton?.text =
+        binding?.datePickerButton?.text =
             formatDateWithTimeZone(date, "yyyy-MM-dd HH:mm:ss z", "America/Los_Angeles")
 
-        _binding?.checkbox?.setOnCheckedChangeListener { _, isChecked ->
+        binding?.checkbox?.setOnCheckedChangeListener { _, isChecked ->
             crime.copy(
                 isSolved = isChecked
             )
