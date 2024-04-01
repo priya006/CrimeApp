@@ -15,6 +15,8 @@ import com.example.criminalintent.databinding.CrimeItemLayoutBinding
 
 class CrimeViewHolder (private val itemLayoutBinding: CrimeItemLayoutBinding) :RecyclerView.ViewHolder(itemLayoutBinding.root) {
 
+
+
     /**
      * Binds the given crime data to the views in the ViewHolder.
      *
