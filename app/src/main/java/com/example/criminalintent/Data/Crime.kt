@@ -7,5 +7,6 @@ data class Crime(
     var crimeID: UUID,
     var title: CharSequence?,
     var date: String,
-    var isSolved: Boolean
+    var isSolved: Boolean,
+    var requiresPolice : Boolean
 )
