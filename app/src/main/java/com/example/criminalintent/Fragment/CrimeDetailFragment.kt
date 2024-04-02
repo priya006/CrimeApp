@@ -37,7 +37,8 @@ class CrimeDetailFragment : Fragment() {
             crimeID = UUID.randomUUID(),
             title = "some title",
             date = "",
-            isSolved = true
+            isSolved = true,
+            requiresPolice = false
         )
         updateUI()
     }

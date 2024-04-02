@@ -9,21 +9,16 @@ class CrimeListViewModel : ViewModel() {
 
     init {
         crimeObjects = mutableListOf<Crime>(
-            Crime(UUID.randomUUID(), "Sink issue", "20-11-2024", false),
-            Crime(UUID.randomUUID(), "Printer issue", "20-11-2024", true),
-            Crime(UUID.randomUUID(), "Printer issue", "20-11-2024", true),
-            Crime(UUID.randomUUID(), "Printer issue", "20-11-2024", true),
-            Crime(UUID.randomUUID(), "Printer issue", "20-11-2024", true),
-            Crime(UUID.randomUUID(), "Printer issue", "20-11-2024", true),
-            Crime(UUID.randomUUID(), "Printer issue", "20-11-2024", true),
-            Crime(UUID.randomUUID(), "Printer issue", "20-11-2024", true),
-            Crime(UUID.randomUUID(), "Printer issue", "20-11-2024", true),
-            Crime(UUID.randomUUID(), "Printer issue", "20-11-2024", true),
-            Crime(UUID.randomUUID(), "Printer issue", "20-11-2024", true),
-            Crime(UUID.randomUUID(), "Printer issue", "20-11-2024", true),
-            Crime(UUID.randomUUID(), "Printer issue", "20-11-2024", true),
-            Crime(UUID.randomUUID(), "Printer issue", "20-11-2024", true),
-            Crime(UUID.randomUUID(), "Printer issue", "20-11-2024", true)
+            Crime(UUID.randomUUID(), "Sink issue", "20-11-2024", false, false),
+            Crime(UUID.randomUUID(), "Printer issue", "20-11-2024", true , false),
+            Crime(UUID.randomUUID(), "Printer issue", "20-11-2024", true , false),
+            Crime(UUID.randomUUID(), "Printer issue", "20-11-2024", true , false),
+            Crime(UUID.randomUUID(), "Printer issue", "20-11-2024", true , false),
+            Crime(UUID.randomUUID(), "Printer issue", "20-11-2024", true , false),
+            Crime(UUID.randomUUID(), "Printer issue", "20-11-2024", true , false),
+            Crime(UUID.randomUUID(), "Printer issue", "20-11-2024", true , false),
+            Crime(UUID.randomUUID(), "Printer issue", "20-11-2024", true , false),
+            Crime(UUID.randomUUID(), "Printer issue", "20-11-2024", true , false),
         )
     }
 

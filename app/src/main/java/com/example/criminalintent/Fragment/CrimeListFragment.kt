@@ -30,7 +30,8 @@ class CrimeListFragment :Fragment() {
                crimeID = UUID.randomUUID(),
                title = "some String $i",
                date = "",
-               isSolved = true
+               isSolved = true,
+               requiresPolice = false
            )
         }
     }
