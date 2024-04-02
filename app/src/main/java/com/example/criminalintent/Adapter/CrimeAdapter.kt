@@ -59,12 +59,12 @@ class CrimeAdapter(private val crimeList: List<Crime>) : RecyclerView.Adapter<Re
         //you'll use the CrimeViewHolder to bind data to the views in each item of the RecyclerView.
         val crime = crimeList[position]
         if(recyclerViewHolder is CrimeViewHolder){
-            val crimeViewHolder = recyclerViewHolder as CrimeViewHolder
+            val crimeViewHolder = recyclerViewHolder 
             crimeViewHolder.bindDataToTheView(crime)
         }
 
         if(recyclerViewHolder is PoliceViewHolder){
-            val policeViewHolder = recyclerViewHolder as PoliceViewHolder
+            val policeViewHolder = recyclerViewHolder
             policeViewHolder.bindToPoliceViewHolder(crime)
         }
     }
