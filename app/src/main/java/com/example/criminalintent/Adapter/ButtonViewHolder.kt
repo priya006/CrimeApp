@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.criminalintent.Data.Crime
 import com.example.criminalintent.databinding.PoliceLayoutBinding
 
-class PoliceViewHolder( private val policeLayoutBinding: PoliceLayoutBinding ) : RecyclerView.ViewHolder(policeLayoutBinding.root) {
+class ButtonViewHolder(private val policeLayoutBinding: PoliceLayoutBinding ) : RecyclerView.ViewHolder(policeLayoutBinding.root) {
 
 
     fun bindToPoliceViewHolder(crime:Crime){

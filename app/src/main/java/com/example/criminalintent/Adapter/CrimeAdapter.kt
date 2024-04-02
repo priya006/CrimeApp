@@ -20,7 +20,7 @@ class CrimeAdapter(private val crimeList: List<Crime>) : RecyclerView.Adapter<Re
             VIEW_TYPE_WITH_POLICE -> {
                 val inflater = LayoutInflater.from(parent.context)
                 val policeLayoutBinding = PoliceLayoutBinding.inflate(inflater, parent, false)
-                PoliceViewHolder(policeLayoutBinding)
+                ButtonViewHolder(policeLayoutBinding)
             }
 
             VIEW_TYPE_WITH_OUT_POLICE -> {
@@ -59,11 +59,11 @@ class CrimeAdapter(private val crimeList: List<Crime>) : RecyclerView.Adapter<Re
         //you'll use the CrimeViewHolder to bind data to the views in each item of the RecyclerView.
         val crime = crimeList[position]
         if(recyclerViewHolder is CrimeViewHolder){
-            val crimeViewHolder = recyclerViewHolder 
+            val crimeViewHolder = recyclerViewHolder
             crimeViewHolder.bindDataToTheView(crime)
         }
 
-        if(recyclerViewHolder is PoliceViewHolder){
+        if(recyclerViewHolder is ButtonViewHolder){
             val policeViewHolder = recyclerViewHolder
             policeViewHolder.bindToPoliceViewHolder(crime)
         }
