@@ -30,7 +30,7 @@ class CrimeViewHolder (private val itemLayoutBinding: CrimeItemLayoutBinding) :R
         itemLayoutBinding.textViewDate.text = crime.date
         itemLayoutBinding?.root?.setOnClickListener {
 
-            Toast.makeText(itemLayoutBinding.root.context,"${crime.date}crime objects",
+            Toast.makeText(itemLayoutBinding.root.context,"${crime.date}",
                 Toast.LENGTH_LONG).show()
         }
     }

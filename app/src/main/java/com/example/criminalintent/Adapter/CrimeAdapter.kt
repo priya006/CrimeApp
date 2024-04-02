@@ -51,14 +51,22 @@ class CrimeAdapter(private val crimeList: List<Crime>) : RecyclerView.Adapter<Re
      * Override [.onBindViewHolder] instead if Adapter can
      * handle efficient partial bind.
      *
-     * @param holder The ViewHolder which should be updated to represent the contents of the
+     * @param recyclerViewHolder The ViewHolder which should be updated to represent the contents of the
      * item at the given position in the data set.
      * @param position The position of the item within the adapter's data set.
      */
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(recyclerViewHolder: RecyclerView.ViewHolder, position: Int) {
         //you'll use the CrimeViewHolder to bind data to the views in each item of the RecyclerView.
         val crime = crimeList[position]
-        viewHolder.bindDataToTheView(crime)
+        if(recyclerViewHolder is CrimeViewHolder){
+            val crimeViewHolder = recyclerViewHolder as CrimeViewHolder
+            crimeViewHolder.bindDataToTheView(crime)
+        }
+
+        if(recyclerViewHolder is PoliceViewHolder){
+            val policeViewHolder = recyclerViewHolder as PoliceViewHolder
+            policeViewHolder.bindToPoliceViewHolder(crime)
+        }
     }
 
 

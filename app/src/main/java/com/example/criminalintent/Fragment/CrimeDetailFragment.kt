@@ -12,7 +12,6 @@ import com.example.criminalintent.databinding.CriminalIntentLayoutBinding
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.TimeZone
-import java.util.UUID
 
 class CrimeDetailFragment : Fragment() {
 
@@ -33,13 +32,6 @@ class CrimeDetailFragment : Fragment() {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        crime = Crime(
-            crimeID = UUID.randomUUID(),
-            title = "some title",
-            date = "",
-            isSolved = true,
-            requiresPolice = false
-        )
         updateUI()
     }
 
@@ -67,13 +59,6 @@ class CrimeDetailFragment : Fragment() {
         dateFormat.timeZone = TimeZone.getTimeZone(timeZoneId)
         return dateFormat.format(date)
     }
-
-
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-
-    //TODO: initialise the crime object
-//    }
 
 
     override fun onDestroyView() {

@@ -16,38 +16,26 @@ import com.example.criminalintent.databinding.CriminalListBinding
 import java.time.Duration
 import java.util.UUID
 
-class CrimeListFragment :Fragment() {
+class CrimeListFragment : Fragment() {
 
-    private val crimeListViewModel : CrimeListViewModel by viewModels()
-    private lateinit var recyclerView : RecyclerView
-    private var _criminalListBinding:CriminalListBinding? = null
-    private val criminalListBinding get() =  _criminalListBinding
+    private val crimeListViewModel: CrimeListViewModel by viewModels()
+    private var _criminalListBinding: CriminalListBinding? = null
+    private val criminalListBinding get() = _criminalListBinding
 
-    init {
-        //populate data to Crime object
-        for(i in 1..100){
-           val crime =  Crime(
-               crimeID = UUID.randomUUID(),
-               title = "some String $i",
-               date = "",
-               isSolved = true,
-               requiresPolice = false
-           )
-        }
-    }
-
-
-
-    override fun onCreateView(inflater: LayoutInflater, viewGroup : ViewGroup?, saveInstanceState: Bundle?): View? {
-        _criminalListBinding =  CriminalListBinding.inflate(inflater,viewGroup,false)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        viewGroup: ViewGroup?,
+        saveInstanceState: Bundle?
+    ): View? {
+        _criminalListBinding = CriminalListBinding.inflate(inflater, viewGroup, false)
         // Get a reference to the RecyclerView
         val recyclerView = criminalListBinding?.recyclerView
         // Set up the RecyclerView adapter
-        val crimeAdapter = CrimeAdapter(crimeList = crimeListViewModel.getCrimeObject() )
-        recyclerView?.adapter  = crimeAdapter
+        val crimeAdapter = CrimeAdapter(crimeList = crimeListViewModel.getCrimeObject())
+        recyclerView?.adapter = crimeAdapter
         // Set layout manager for the RecyclerView
         recyclerView?.layoutManager = LinearLayoutManager(requireContext())
-      return  criminalListBinding?.root
+        return criminalListBinding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -56,7 +44,6 @@ class CrimeListFragment :Fragment() {
         //initialize the layout manager
         var layoutManager = LinearLayoutManager(context)
         _criminalListBinding?.recyclerView?.layoutManager = layoutManager
-
 
 
     }

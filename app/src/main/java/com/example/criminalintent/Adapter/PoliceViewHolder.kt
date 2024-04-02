@@ -11,7 +11,7 @@ class PoliceViewHolder( private val policeLayoutBinding: PoliceLayoutBinding ) :
     fun bindToPoliceViewHolder(crime:Crime){
         policeLayoutBinding.buttonContactPolice.text = crime.title
         policeLayoutBinding.buttonContactPolice.setOnClickListener {
-            Toast.makeText(policeLayoutBinding.buttonContactPolice.context, "button u clicked",Toast.LENGTH_LONG).show()
+            Toast.makeText(policeLayoutBinding.buttonContactPolice.context, "This is Button Click coming from a different layout",Toast.LENGTH_LONG).show()
         }
     }
 
