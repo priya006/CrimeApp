@@ -7,18 +7,17 @@
 
     <TextView
         android:id="@+id/textViewCrimeId"
-        android:layout_width="174dp"
-        android:layout_height="42dp"
-        android:paddingStart="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:paddingTop="8dp"
         android:paddingEnd="16dp"
         android:paddingBottom="4dp"
-        android:text="Crime #1"
+        android:text="Crime#1"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textViewDate"
-        app:layout_constraintEnd_toStartOf="@+id/imageView"
-        app:layout_constraintHorizontal_bias="0.093"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
@@ -27,9 +26,8 @@
         android:id="@+id/textViewDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="352dp"
-        android:paddingStart="16dp"
+        android:layout_marginBottom="8dp"
+        android:paddingStart="0dp"
         android:paddingTop="4dp"
         android:paddingEnd="16dp"
         android:paddingBottom="8dp"
@@ -37,15 +35,13 @@
 "
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageView"
-        app:layout_constraintHorizontal_bias="0.528"
         app:layout_constraintStart_toStartOf="parent" />
         />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="49dp"
-        android:layout_height="41dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
