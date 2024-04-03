@@ -2,7 +2,6 @@ package com.example.criminalintent.Adapter
 
 import android.view.View
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 import com.example.criminalintent.Data.Crime
 import com.example.criminalintent.databinding.CrimeItemLayoutBinding
@@ -34,13 +33,6 @@ class CrimeViewHolder (private val itemLayoutBinding: CrimeItemLayoutBinding) :R
             Toast.makeText(itemLayoutBinding.root.context,"${crime.date}",
                 Toast.LENGTH_LONG).show()
         }
-
-        if(crime.isSolved){
-            itemLayoutBinding.imageCuff.visibility = View.VISIBLE
-        } else{
-            itemLayoutBinding.imageCuff.visibility = View.GONE
-        }
-
+        itemLayoutBinding.imageCuff.visibility = if(crime.isSolved)  View.VISIBLE else View.GONE
     }
-
 }
