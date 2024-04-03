@@ -53,5 +53,4 @@ class CrimeListFragment : Fragment() {
         super.onDestroyView()
         _criminalListBinding = null
     }
-
 }
