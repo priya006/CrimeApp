@@ -1,7 +1,8 @@
 What am i learning everyday?
 1. How Fragments placed inside fragment container view and hosted in a activity
 2. Deep knowledge on Rendering list of data using recycler view. Basically Recycler view cares about recycling the views and delegates other responsibilities to layout manager, adapter for data, viewholder for holding the views. Recycler view makes a conversation with the adapter that we create subclassing RecyclerView.Adapter
-3. RecyclerView with two different itemTypes. 
+3. RecyclerView with two different itemTypes.
+4. Decent Understanding with layour properties and how to set constraints for thew view, why we need flattened layout as oppsoed to nested layout like linear layout. 
 
 
 
