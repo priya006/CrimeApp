@@ -19,4 +19,6 @@ class CrimeTypeConverters {
     fun toDate(timestamp: Long?): Date? {
         return timestamp?.let { Date(it) } // Convert Long to Date
     }
+
+
 }

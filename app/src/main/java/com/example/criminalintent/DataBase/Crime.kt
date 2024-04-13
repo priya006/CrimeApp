@@ -8,8 +8,8 @@ import java.util.UUID
 data class Crime(
     //The crimeID serves as a unique identifier for each crime in the list view
     @PrimaryKey
-    var crimeID: String,
-    var title: CharSequence?,
+    var id: Int,
+    var title: String?,
     var date: String,
     var isSolved: Boolean,
     var requiresPolice : Boolean

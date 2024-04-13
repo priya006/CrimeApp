@@ -26,7 +26,7 @@ class CrimeViewHolder (private val itemLayoutBinding: CrimeItemLayoutBinding) :R
      */
 
     fun bindDataToTheView(crime : Crime){
-        itemLayoutBinding.crimeSolved.text = crime.crimeID.toString()
+        itemLayoutBinding.crimeSolved.text = crime.id.toString()
         itemLayoutBinding.textViewDate.text = crime.date
         itemLayoutBinding?.root?.setOnClickListener {
 

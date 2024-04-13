@@ -6,10 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.criminalintent.Adapter.CrimeAdapter
 import com.example.criminalintent.ViewModel.CrimeListViewModel
 import com.example.criminalintent.databinding.CriminalListBinding
+import kotlinx.coroutines.launch
 
 class CrimeListFragment : Fragment() {
 
@@ -25,9 +27,12 @@ class CrimeListFragment : Fragment() {
         _criminalListBinding = CriminalListBinding.inflate(inflater, viewGroup, false)
         // Get a reference to the RecyclerView
         val recyclerView = criminalListBinding?.recyclerView
-        // Set up the RecyclerView adapter
-        val crimeAdapter = CrimeAdapter(crimeList = crimeListViewModel.getCrimeObject())
-        recyclerView?.adapter = crimeAdapter
+        lifecycleScope.launch{
+            // Set up the RecyclerView adapter
+            val crimeAdapter = CrimeAdapter(crimeList = crimeListViewModel.getCrimeObject())
+            recyclerView?.adapter = crimeAdapter
+        }
+
         // Set layout manager for the RecyclerView
         recyclerView?.layoutManager = LinearLayoutManager(requireContext())
         return criminalListBinding?.root
