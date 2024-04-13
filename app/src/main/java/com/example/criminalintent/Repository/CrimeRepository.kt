@@ -7,6 +7,7 @@ class CrimeRepository private constructor(private val context: Context) {
 
     companion object{
         private var crimeRepository : CrimeRepository? = null
+
     fun getInstance(context: Context):CrimeRepository{
         if(crimeRepository == null) {
             crimeRepository = CrimeRepository(context)
@@ -15,4 +16,5 @@ class CrimeRepository private constructor(private val context: Context) {
     }
 
     }
+    //TODO Accessing Dao which has query
     }
