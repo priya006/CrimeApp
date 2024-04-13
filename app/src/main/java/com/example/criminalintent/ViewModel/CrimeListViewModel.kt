@@ -4,7 +4,8 @@ import androidx.lifecycle.ViewModel
 import com.example.criminalintent.DataBase.Crime
 import com.example.criminalintent.Repository.CrimeRepository
 
-class CrimeListViewModel(private val crimeRepository: CrimeRepository) : ViewModel() {
+class CrimeListViewModel() : ViewModel() {
+    private val crimeRepository: CrimeRepository = CrimeRepository.get()
  // private  var crimeObjects: MutableList<Crime> = mutableListOf()
 
 //    init {

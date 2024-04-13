@@ -8,8 +8,8 @@ import java.util.UUID
 interface CrimeDao {
 
     @Query("SELECT * FROM crime")
-     fun getCrimes() : List<Crime>
+    suspend fun getCrimes() : List<Crime>
 
-    @Query("Select * FROM crime WHERE id = :id")
-     fun getCrime(id: Int) :Crime
+//    @Query("Select * FROM crime WHERE id = :id")
+//     fun getCrime(id: Int) :Crime
 }

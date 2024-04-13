@@ -26,14 +26,15 @@ class CrimeRepository private constructor( context: Context) {
     }
     private val crimeDatabase :CrimeDatabase = Room.databaseBuilder(context.applicationContext,CrimeDatabase::class.java,"crime-database")
         .createFromAsset("crime-database")
+        .fallbackToDestructiveMigration()
         .build()
 
     suspend fun getCrimes():List<Crime>{
       return   crimeDatabase.crimeDao().getCrimes()
     }
 
-    suspend fun getCrime(crimeId: Int):Crime{
-        return crimeDatabase.crimeDao().getCrime(crimeId)
-    }
+//    suspend fun getCrime(id: Int):Crime{
+//        return crimeDatabase.crimeDao().getCrime(id)
+//    }
 
     }
