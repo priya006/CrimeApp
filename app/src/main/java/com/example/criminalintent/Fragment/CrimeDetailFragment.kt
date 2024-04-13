@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
-import com.example.criminalintent.Data.Crime
+import com.example.criminalintent.DataBase.Crime
 import com.example.criminalintent.databinding.CriminalIntentLayoutBinding
 import java.text.SimpleDateFormat
 import java.util.Date

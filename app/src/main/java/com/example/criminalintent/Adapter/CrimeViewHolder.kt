@@ -3,7 +3,7 @@ package com.example.criminalintent.Adapter
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.example.criminalintent.Data.Crime
+import com.example.criminalintent.DataBase.Crime
 import com.example.criminalintent.databinding.CrimeItemLayoutBinding
 
 
@@ -25,7 +25,7 @@ class CrimeViewHolder (private val itemLayoutBinding: CrimeItemLayoutBinding) :R
      * @param crime The Crime object containing data to be displayed.
      */
 
-    fun bindDataToTheView(crime :Crime){
+    fun bindDataToTheView(crime : Crime){
         itemLayoutBinding.crimeSolved.text = crime.crimeID.toString()
         itemLayoutBinding.textViewDate.text = crime.date
         itemLayoutBinding?.root?.setOnClickListener {

@@ -3,7 +3,7 @@ package com.example.criminalintent.Adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.criminalintent.Data.Crime
+import com.example.criminalintent.DataBase.Crime
 import com.example.criminalintent.databinding.CrimeItemLayoutBinding
 import com.example.criminalintent.databinding.PoliceLayoutBinding
 
