@@ -4,7 +4,7 @@ What am i learning everyday?
 3. RecyclerView with two different itemTypes.
 4. Decent Understanding with layour properties and how to set constraints for thew view, why we need flattened layout as oppsoed to nested layout like linear layout.
 5. Hooked the app with Room Database. The DAO Class can access the database, The crime Data class made as entity which maps as columns in ROom Database, Database which extends ROomDatabase, Application which can create instance of Repository.
-6. RESUME PLAN -> Fix the issue with method parameter in your DAO interface matches the bind variable used in the query
+6. RESUME PLAN -> Kotlin Flow 
    
 
 
