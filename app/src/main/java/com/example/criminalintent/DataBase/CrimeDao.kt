@@ -1,15 +1,20 @@
 package com.example.criminalintent.DataBase
 
 import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import java.util.UUID
-
-@Dao
-interface CrimeDao {
+import kotlinx.coroutines.flow.Flow
+import java.util.UUID@Dao
+interface CrimeDao
+{
+@Insert(onConflict = OnConflictStrategy.REPLACE)
+suspend fun insertCrime(crime: Crime)
 
     @Query("SELECT * FROM crime")
-    suspend fun getCrimes() : List<Crime>
+    fun getCrimes(): Flow<List<Crime>>
 
-//    @Query("Select * FROM crime WHERE id = :id")
-//     fun getCrime(id: Int) :Crime
+    @Query("SELECT * FROM crime WHERE id=(:id)")
+    suspend fun getCrime(id: UUID): Flow<Int>
 }
+

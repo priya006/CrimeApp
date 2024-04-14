@@ -8,62 +8,64 @@ import android.view.ViewGroup
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import com.example.criminalintent.DataBase.Crime
-import com.example.criminalintent.databinding.CriminalIntentLayoutBinding
+import com.example.criminalintent.databinding.FragmentCrimeDetailBinding
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.TimeZone
+import java.util.UUID
 
 class CrimeDetailFragment : Fragment() {
 
+    private var _binding: FragmentCrimeDetailBinding? = null
+    private val binding
+        get() = checkNotNull(_binding) {
+            "Cannot access binding because it is null. Is the view visible?"
+        }
+
     private lateinit var crime: Crime
-    //nullable backing property
-    private  var _binding: CriminalIntentLayoutBinding? = null
-    private val  binding  get() = _binding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        crime = Crime(
+            id = UUID.randomUUID(),
+            title = "",
+            date = Date(),
+            isSolved = false
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        _binding = CriminalIntentLayoutBinding.inflate(layoutInflater)
-        return binding?.root
+        _binding =
+            FragmentCrimeDetailBinding.inflate(inflater, container, false)
+        return binding.root
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        updateUI()
-    }
+        super.onViewCreated(view, savedInstanceState)
 
-    private fun updateUI() {
+        binding.apply {
+            crimeTitle.doOnTextChanged { text, _, _, _ ->
+                crime = crime.copy(title = text.toString())
+            }
 
-        binding?.editText?.doOnTextChanged { text, _, _, _ ->
-            //check whether the text entered by the user is different from the current text
-            if (binding?.editText?.text.toString() != text.toString()) {
-                binding?.editText?.text = text as Editable?
+            crimeDate.apply {
+                text = crime.date.toString()
+                isEnabled = false
+            }
+
+            crimeSolved.setOnCheckedChangeListener { _, isChecked ->
+                crime = crime.copy(isSolved = isChecked)
             }
         }
-        val date = Date()
-        binding?.datePickerButton?.text =
-            formatDateWithTimeZone(date, "yyyy-MM-dd HH:mm:ss z", "America/Los_Angeles")
-
-        binding?.checkbox?.setOnCheckedChangeListener { _, isChecked ->
-            crime.copy(
-                isSolved = isChecked
-            )
-        }
     }
-
-    fun formatDateWithTimeZone(date: Date, pattern: String, timeZoneId: String): String {
-        val dateFormat = SimpleDateFormat(pattern)
-        dateFormat.timeZone = TimeZone.getTimeZone(timeZoneId)
-        return dateFormat.format(date)
-    }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
-        //nulling out references to the views
         _binding = null
     }
 }

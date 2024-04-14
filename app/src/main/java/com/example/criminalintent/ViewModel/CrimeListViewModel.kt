@@ -1,29 +1,48 @@
 package com.example.criminalintent.ViewModel
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.criminalintent.DataBase.Crime
 import com.example.criminalintent.Repository.CrimeRepository
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
+import java.util.Date
+import java.util.UUID
 
-class CrimeListViewModel() : ViewModel() {
-    private val crimeRepository: CrimeRepository = CrimeRepository.get()
- // private  var crimeObjects: MutableList<Crime> = mutableListOf()
+class CrimeListViewModel : ViewModel() {
+    private val crimeRepository = CrimeRepository.get()
 
-//    init {
-//        //Based on the data passed to requirespolice we determine which layout to render
-//
-//            crimeObjects.add(crimeRepository.getCrimes())
-//
-//        crimeObjects.add(5,
-//            Crime("crime #$9", "Sink issue", "2023-02-15T15:30:00-08:00", false, true)
-//        )
-//        for (i in 6 until 20 ){
-//            crimeObjects.add(i,
-//                Crime("crime #$i", "Sink issue", "2024-02-15T15:30:00-08:00", false, false)
-//            )
+    private val _crimes: MutableStateFlow<List<Crime>> = MutableStateFlow(emptyList())
+    val crimes: StateFlow<List<Crime>>
+        get() = _crimes.asStateFlow()
+
+    init {
+
+        viewModelScope.launch {
+            repeat(20) {
+                val crime = Crime(UUID.randomUUID(), "Example Crime $it", Date(), isSolved = false)
+                crimeRepository.insertCrime(crime)
+            }
+        }
+
+        viewModelScope.launch {
+            crimeRepository.getCrimes().collect {
+                _crimes.value = it
+            }
+        }
+
+//        viewModelScope.launch {
+//            val id = UUID.randomUUID()
+//             crimeRepository.getCrime(id).collect{ crime ->
+//                _crimes.value = crime
+//            }
+//            // Do something with the fetched crime, such as updating UI
 //        }
-//    }
 
-    suspend fun getCrimeObject():List<Crime> {
-        return crimeRepository.getCrimes()
     }
+
+
 }
+

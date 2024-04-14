@@ -6,51 +6,54 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.criminalintent.Adapter.CrimeAdapter
+import com.example.criminalintent.Adapter.CrimeListAdapter
 import com.example.criminalintent.ViewModel.CrimeListViewModel
-import com.example.criminalintent.databinding.CriminalListBinding
+import com.example.criminalintent.databinding.FragmentCrimeListBinding
 import kotlinx.coroutines.launch
+
+private const val TAG = "CrimeListFragment"
 
 class CrimeListFragment : Fragment() {
 
+    private var _binding: FragmentCrimeListBinding? = null
+    private val binding
+        get() = checkNotNull(_binding) {
+            "Cannot access binding because it is null. Is the view visible?"
+        }
+
     private val crimeListViewModel: CrimeListViewModel by viewModels()
-    private var _criminalListBinding: CriminalListBinding? = null
-    private val criminalListBinding get() = _criminalListBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
-        viewGroup: ViewGroup?,
-        saveInstanceState: Bundle?
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
-        _criminalListBinding = CriminalListBinding.inflate(inflater, viewGroup, false)
-        // Get a reference to the RecyclerView
-        val recyclerView = criminalListBinding?.recyclerView
-        lifecycleScope.launch{
-            // Set up the RecyclerView adapter
-            val crimeAdapter = CrimeAdapter(crimeList = crimeListViewModel.getCrimeObject())
-            recyclerView?.adapter = crimeAdapter
-        }
+        _binding = FragmentCrimeListBinding.inflate(inflater, container, false)
 
-        // Set layout manager for the RecyclerView
-        recyclerView?.layoutManager = LinearLayoutManager(requireContext())
-        return criminalListBinding?.root
+        binding.crimeRecyclerView.layoutManager = LinearLayoutManager(context)
+
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //initialize the layout manager
-        var layoutManager = LinearLayoutManager(context)
-        _criminalListBinding?.recyclerView?.layoutManager = layoutManager
-
-
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                crimeListViewModel.crimes.collect { crimes ->
+                    binding.crimeRecyclerView.adapter =
+                        CrimeListAdapter(crimes)
+                }
+            }
+        }
     }
 
-    //Release the resources
     override fun onDestroyView() {
         super.onDestroyView()
-        _criminalListBinding = null
+        _binding = null
     }
 }
