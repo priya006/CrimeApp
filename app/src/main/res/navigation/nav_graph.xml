@@ -9,5 +9,14 @@
         android:id="@+id/crimeListFragment"
         android:name="com.example.criminalintent.Fragment.CrimeListFragment"
         android:label="CrimeListFragment"
-        tools:layout= "@layout/fragment_crime_list"/>
+        tools:layout= "@layout/fragment_crime_list">
+        <action
+            android:id="@+id/show_crime_detail"
+            app:destination="@id/crimeDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/crimeDetailFragment"
+        android:name="com.example.criminalintent.Fragment.CrimeDetailFragment"
+        android:label="CrimeDetailFragment"
+        tools:layout="@layout/fragment_crime_detail"/>
 </navigation>
