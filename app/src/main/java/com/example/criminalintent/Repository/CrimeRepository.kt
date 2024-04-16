@@ -51,7 +51,7 @@ class CrimeRepository private constructor(private val context: Context) {
         }
     }
 
-    suspend fun getCrime(id: UUID): Flow<Int> {
+    suspend fun getCrime(id: UUID): Crime {
         return withContext(Dispatchers.IO){
             getDatabase(context).crimeDao().getCrime(id)
         }

@@ -15,6 +15,6 @@ suspend fun insertCrime(crime: Crime)
     fun getCrimes(): Flow<List<Crime>>
 
     @Query("SELECT * FROM crime WHERE id=(:id)")
-    suspend fun getCrime(id: UUID): Flow<Int>
+     fun getCrime(id: UUID): Crime
 }
 
