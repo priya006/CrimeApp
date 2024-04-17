@@ -4,7 +4,8 @@ What am i learning everyday?
 3. RecyclerView with two different itemTypes.
 4. Decent Understanding with layour properties and how to set constraints for thew view, why we need flattened layout as oppsoed to nested layout like linear layout.
 5. Hooked the app with Room Database. The DAO Class can access the database, The crime Data class made as entity which maps as columns in ROom Database, Database which extends ROomDatabase, Application which can create instance of Repository.
-6. RESUME PLAN -> Kotlin Flow 
+6. Added Navigation Jetpack library as dependecy. Defined the destination from fragment 1 to fragment 2 in nav_graph.xml and Hooked up the NavHostFragment to act as the container for the nav destinations
+   defined in nav graph
    
 
 
