@@ -18,5 +18,9 @@
         android:id="@+id/crimeDetailFragment"
         android:name="com.example.criminalintent.Fragment.CrimeDetailFragment"
         android:label="CrimeDetailFragment"
-        tools:layout="@layout/fragment_crime_detail"/>
+        tools:layout="@layout/fragment_crime_detail">
+        <argument
+            android:name="crimeId"
+            app:argType="java.util.UUID" />
+    </fragment>
 </navigation>
