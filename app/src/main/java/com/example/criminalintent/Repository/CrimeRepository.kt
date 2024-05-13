@@ -6,7 +6,9 @@ import com.example.criminalintent.DataBase.Crime
 import com.example.criminalintent.DataBase.CrimeDatabase
 import com.example.criminalintent.ViewModel.CrimeListViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.UUID
 
@@ -58,6 +60,12 @@ class CrimeRepository private constructor(private val context: Context) {
     }
 
 
+     fun updateCrime(crime : Crime){
+        GlobalScope.launch {
+            getDatabase(context).crimeDao().updateCrime(crime)
+        }
+
+        }
 
     companion object {
         private var INSTANCE: CrimeRepository? = null

@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.criminalintent.DataBase.Crime
 import com.example.criminalintent.Repository.CrimeRepository
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -24,9 +25,19 @@ class CrimeDetailViewModel(crimeId:UUID) : ViewModel() {
         }
     }
 
+    //Updating the oldCrime Object with the new value from the fragment
     fun updateCrime(onUpdate: (Crime) -> Crime) {
         _crime.update { oldCrime ->
             oldCrime?.let { onUpdate(it) }
+        }
+    }
+
+    override fun onCleared(){
+        super.onCleared()
+            _crime.value.let {
+                if (it != null) {
+                    crimeRepository.updateCrime(it)
+                }
         }
     }
 

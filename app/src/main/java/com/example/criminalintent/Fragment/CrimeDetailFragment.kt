@@ -73,6 +73,7 @@ class CrimeDetailFragment : Fragment() {
             }
         }
 
+
     }
 
     fun updateUI(crime : Crime){
