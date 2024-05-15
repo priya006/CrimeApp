@@ -1,8 +1,7 @@
 package com.example.criminalintent.Fragment
 
+import android.content.DialogInterface
 import android.os.Bundle
-import android.text.Editable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,7 +18,6 @@ import com.example.criminalintent.DataBase.Crime
 import com.example.criminalintent.ViewModel.CrimeDetailViewModel
 import com.example.criminalintent.ViewModel.CrimeDetailViewModelFactory
 import com.example.criminalintent.databinding.FragmentCrimeDetailBinding
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 
@@ -43,7 +41,6 @@ class CrimeDetailFragment : Fragment() {
                   if (binding.crimeTitle.text.isEmpty()) {
                       binding.crimeTitle.hint = "Enter title for the crime"
                   }else if(findNavController().popBackStack().not()) {
-                      //Last fragment: Do your operation here
                       requireActivity().finish()
                   }
             }
@@ -71,15 +68,21 @@ class CrimeDetailFragment : Fragment() {
                 }
             }
 
-            crimeDate.apply {
-                isEnabled = false
+
+            crimeDate.setOnClickListener{
+                findNavController().navigate(CrimeDetailFragmentDirections.selectDate())
             }
+
+
+
+
             crimeSolved.setOnCheckedChangeListener { _, isChecked ->
                 crimeDetailViewModel.updateCrime { oldCrime ->
                     oldCrime.copy(isSolved = isChecked)
                 }
             }
         }
+
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){

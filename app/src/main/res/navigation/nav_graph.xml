@@ -22,5 +22,12 @@
         <argument
             android:name="crimeId"
             app:argType="java.util.UUID" />
+        <action
+            android:id="@+id/selectDate"
+            app:destination="@id/dateFragment" />
     </fragment>
+    <dialog
+        android:id="@+id/dateFragment"
+        android:name="com.example.criminalintent.Fragment.DateFragment"
+        android:label="DateFragment" />
 </navigation>
