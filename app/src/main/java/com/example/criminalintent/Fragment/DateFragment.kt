@@ -18,7 +18,7 @@ class DateFragment : DialogFragment() {
         val day = calendar.get(Calendar.DAY_OF_WEEK)
         return DatePickerDialog(
             requireContext(),
-null
+    null
             ,
             year,
             month,

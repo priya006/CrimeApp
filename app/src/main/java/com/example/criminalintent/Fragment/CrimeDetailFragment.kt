@@ -68,14 +68,6 @@ class CrimeDetailFragment : Fragment() {
                 }
             }
 
-
-            crimeDate.setOnClickListener{
-                findNavController().navigate(CrimeDetailFragmentDirections.selectDate())
-            }
-
-
-
-
             crimeSolved.setOnCheckedChangeListener { _, isChecked ->
                 crimeDetailViewModel.updateCrime { oldCrime ->
                     oldCrime.copy(isSolved = isChecked)
@@ -104,6 +96,9 @@ class CrimeDetailFragment : Fragment() {
             }
             crimeDate.text = crime.date.toString()
             crimeSolved.isChecked = crime.isSolved
+            crimeDate.setOnClickListener{
+                findNavController().navigate(CrimeDetailFragmentDirections.selectDate())
+            }
         }
 
     }
