@@ -22,7 +22,8 @@ class DatePickerFragment : DialogFragment() {
          val result = Bundle().apply {
              putSerializable(RESULT_DATE_KEY,resultDate)
          }
-
+            // Set the fragment result, this will invoke the `onFragmentResult` of CrimeDetailFragment
+            parentFragmentManager.setFragmentResult(RESULT_DATE_KEY,result)
         }
         
 
