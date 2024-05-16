@@ -1,6 +1,5 @@
 package com.example.criminalintent.Fragment
 
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +7,7 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -21,10 +21,10 @@ import com.example.criminalintent.databinding.FragmentCrimeDetailBinding
 import kotlinx.coroutines.launch
 
 
-class CrimeDetailFragment : Fragment() {
+class CrimeDetailFragment : Fragment() , FragmentResultListener {
     private val args: CrimeDetailFragmentArgs by navArgs()
-    private val crimeDetailViewModel :CrimeDetailViewModel by viewModels {
-         CrimeDetailViewModelFactory(crimeId = args.crimeId)
+    private val crimeDetailViewModel: CrimeDetailViewModel by viewModels {
+        CrimeDetailViewModelFactory(crimeId = args.crimeId)
     }
     private var _binding: FragmentCrimeDetailBinding? = null
 
@@ -35,14 +35,14 @@ class CrimeDetailFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val onBackPressedCallback = object : OnBackPressedCallback(true){
+        val onBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
 
-                  if (binding.crimeTitle.text.isEmpty()) {
-                      binding.crimeTitle.hint = "Enter title for the crime"
-                  }else if(findNavController().popBackStack().not()) {
-                      requireActivity().finish()
-                  }
+                if (binding.crimeTitle.text.isEmpty()) {
+                    binding.crimeTitle.hint = "Enter title for the crime"
+                } else if (findNavController().popBackStack().not()) {
+                    requireActivity().finish()
+                }
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
@@ -77,8 +77,8 @@ class CrimeDetailFragment : Fragment() {
 
 
         viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
-                crimeDetailViewModel.crime.collect{ crime ->
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                crimeDetailViewModel.crime.collect { crime ->
                     crime?.let {
                         updateUI(it)
                     }
@@ -89,14 +89,16 @@ class CrimeDetailFragment : Fragment() {
 
     }
 
-    fun updateUI(crime : Crime){
+
+
+    fun updateUI(crime: Crime) {
         binding.apply {
-            if(crimeTitle.text.toString() != crime.title){
+            if (crimeTitle.text.toString() != crime.title) {
                 crimeTitle.setText(crime.title)
             }
             crimeDate.text = crime.date.toString()
             crimeSolved.isChecked = crime.isSolved
-            crimeDate.setOnClickListener{
+            crimeDate.setOnClickListener {
                 findNavController().navigate(CrimeDetailFragmentDirections.selectDate())
             }
         }
@@ -106,5 +108,9 @@ class CrimeDetailFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onFragmentResult(requestKey: String, result: Bundle) {
+        TODO("Not yet implemented")
     }
 }

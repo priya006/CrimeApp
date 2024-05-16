@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.room.Room
 import com.example.criminalintent.DataBase.Crime
 import com.example.criminalintent.DataBase.CrimeDatabase
-import com.example.criminalintent.ViewModel.CrimeListViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.Flow
@@ -12,19 +11,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.UUID
 
-private const val DATABASE_NAME = "crime-database"
-
 class CrimeRepository private constructor(private val context: Context) {
-
-//    private val database: CrimeDatabase = Room
-//        .databaseBuilder(
-//            context.applicationContext,
-//            CrimeDatabase::class.java,
-//            DATABASE_NAME
-//        )
-//        .fallbackToDestructiveMigration()
-//        .createFromAsset(DATABASE_NAME)
-//        .build()
 
     private var database: CrimeDatabase? = null
 
@@ -44,9 +31,10 @@ class CrimeRepository private constructor(private val context: Context) {
     }
 
     suspend fun insertCrime(crime: Crime) {
-       return getDatabase(context).crimeDao().insertCrime(crime)
+        return getDatabase(context).crimeDao().insertCrime(crime)
     }
-    suspend fun getCrimes():Flow<List<Crime>> {
+
+    suspend fun getCrimes(): Flow<List<Crime>> {
         return withContext(Dispatchers.IO)
         {
             getDatabase(context).crimeDao().getCrimes()
@@ -54,18 +42,18 @@ class CrimeRepository private constructor(private val context: Context) {
     }
 
     suspend fun getCrime(id: UUID): Crime {
-        return withContext(Dispatchers.IO){
+        return withContext(Dispatchers.IO) {
             getDatabase(context).crimeDao().getCrime(id)
         }
     }
 
 
-     fun updateCrime(crime : Crime){
+    fun updateCrime(crime: Crime) {
         GlobalScope.launch {
             getDatabase(context).crimeDao().updateCrime(crime)
         }
 
-        }
+    }
 
     companion object {
         private var INSTANCE: CrimeRepository? = null

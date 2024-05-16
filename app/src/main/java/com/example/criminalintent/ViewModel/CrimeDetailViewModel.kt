@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.criminalintent.DataBase.Crime
 import com.example.criminalintent.Repository.CrimeRepository
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -40,10 +39,7 @@ class CrimeDetailViewModel(crimeId:UUID) : ViewModel() {
                 }
         }
     }
-
 }
-
-
 
 class CrimeDetailViewModelFactory(
     private val crimeId:UUID

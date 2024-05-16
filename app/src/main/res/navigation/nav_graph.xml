@@ -28,6 +28,6 @@
     </fragment>
     <dialog
         android:id="@+id/dateFragment"
-        android:name="com.example.criminalintent.Fragment.DateFragment"
+        android:name="com.example.criminalintent.Fragment.DatePickerFragment"
         android:label="DateFragment" />
 </navigation>

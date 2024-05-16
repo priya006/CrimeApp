@@ -15,8 +15,8 @@ class CrimeListViewModel : ViewModel() {
     private val crimeRepository = CrimeRepository.get()
 
     private val _crimes: MutableStateFlow<List<Crime>> = MutableStateFlow(emptyList())
-     val crimes : StateFlow<List<Crime>>
-         get() = _crimes.asStateFlow()
+    val crimes: StateFlow<List<Crime>>
+        get() = _crimes.asStateFlow()
 
 
     init {
@@ -33,17 +33,6 @@ class CrimeListViewModel : ViewModel() {
                 _crimes.value = it
             }
         }
-
-//        viewModelScope.launch {
-//            val id = UUID.randomUUID()
-//             crimeRepository.getCrime(id).collect{ crime ->
-//                _crimes.value = crime
-//            }
-//            // Do something with the fetched crime, such as updating UI
-//        }
-
     }
-
-
 }
 
