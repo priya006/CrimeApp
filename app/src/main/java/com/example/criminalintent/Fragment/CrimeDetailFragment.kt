@@ -8,6 +8,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentResultListener
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -19,9 +20,10 @@ import com.example.criminalintent.ViewModel.CrimeDetailViewModel
 import com.example.criminalintent.ViewModel.CrimeDetailViewModelFactory
 import com.example.criminalintent.databinding.FragmentCrimeDetailBinding
 import kotlinx.coroutines.launch
+import java.util.Date
 
 
-class CrimeDetailFragment : Fragment() , FragmentResultListener {
+class CrimeDetailFragment : Fragment()  {
     private val args: CrimeDetailFragmentArgs by navArgs()
     private val crimeDetailViewModel: CrimeDetailViewModel by viewModels {
         CrimeDetailViewModelFactory(crimeId = args.crimeId)
@@ -61,6 +63,13 @@ class CrimeDetailFragment : Fragment() , FragmentResultListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setFragmentResultListener("requestKey") { _, bundle ->
+            val newDate = bundle.getSerializable("BUNDLE_KEY_DATE") as Date
+            crimeDetailViewModel.updateCrime { oldCrime ->
+                oldCrime.copy(date = newDate)
+            }
+        }
+
         binding.apply {
             crimeTitle.doOnTextChanged { text, _, _, _ ->
                 crimeDetailViewModel.updateCrime { oldCrime ->
@@ -87,22 +96,21 @@ class CrimeDetailFragment : Fragment() , FragmentResultListener {
         }
 
 
+
     }
-
-
 
     fun updateUI(crime: Crime) {
         binding.apply {
             if (crimeTitle.text.toString() != crime.title) {
                 crimeTitle.setText(crime.title)
             }
+
             crimeDate.text = crime.date.toString()
             crimeSolved.isChecked = crime.isSolved
             crimeDate.setOnClickListener {
-                findNavController().navigate(CrimeDetailFragmentDirections.selectDate())
+                findNavController().navigate(CrimeDetailFragmentDirections.selectDate(crime.date))
             }
         }
-
     }
 
     override fun onDestroyView() {
@@ -110,7 +118,4 @@ class CrimeDetailFragment : Fragment() , FragmentResultListener {
         _binding = null
     }
 
-    override fun onFragmentResult(requestKey: String, result: Bundle) {
-        TODO("Not yet implemented")
-    }
 }
